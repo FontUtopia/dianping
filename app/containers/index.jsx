@@ -34,10 +34,25 @@ class App extends React.Component {
       console.log(cityName)
 
       // 将城市信息存储到 Redux 中
+      this.props.userInfoActions.update({
+        cityName: cityName
+      })
       this.setState({
         initDone:true
       })
     }
 }
 
-export default App
+function mapStateProps (state) {
+  return {}
+}
+function mapDispatchProps (dispatch) {
+  return {
+    userInfoActions: bindActionCreators(userInfoActionsFormOtherFile,dispatch)
+  }
+}
+
+export default connect(
+  mapStateProps,
+  mapDispatchProps
+)(App)
